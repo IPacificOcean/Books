@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('router');
 });
+Route::get('/admin_part_books', function () {
+    return view('admin_part_books');
+});
+Route::get('/admin_part_authors', function () {
+    return view('admin_part_authors');
+});
+
+Route::get('/posts', function () {
+		return 'список постов';
+	});
