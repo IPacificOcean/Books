@@ -40,7 +40,8 @@ return [
             'url' => env('DATABASE_URL'),
             'database' => database_path('database.sqlite'),
             'prefix' => '',
-            // 'foreign_key_constraints' => env('DB_FOREIGN_KEYS', false),
+            // 'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+            'exec' => 'PRAGMA foreign_keys = ON;',
         ],
 
         'mysql' => [

@@ -4,8 +4,12 @@
 		<title>my view</title>
 	</head>
 	<body>
-    <table mathod="POST">
-      <label>Name Author: <input /><input type="submit" /></label>
-    </table>
+    <form method='post' action="{{ route('author.store') }}" >
+      @csrf
+      <label>Name Author: 
+        <input name="name">
+      </label>
+        <input type="submit">
+    </form>
 	</body>
 </html>

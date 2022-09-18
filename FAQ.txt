@@ -1,0 +1,10 @@
+php artisan make:model Author -mcr
+php artisan make:model Book -mcr
+php artisan migrate
+php artisan migrate:fresh
+//php artisan make:controller AuthorController -r
+//php artisan make:controller BookController -r
+
+Model
+  protected $fillable = ['name', 'author_id'];
+
