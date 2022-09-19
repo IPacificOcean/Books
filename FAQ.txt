@@ -1,7 +1,10 @@
 php artisan make:model Author -mcr
 php artisan make:model Book -mcr
-php artisan migrate
-php artisan migrate:fresh
+php artisan migrate // применить миграцию
+php artisan migrate:fresh // сброс всех миграций
+php artisan migrate:reset // отменит изменения всех миграций
+php artisan migrate:rollback // откатить последнюю миграцию, можно указать кол-во --step=5
+composer require doctrine/dbal // доп пакет для возможности менять поля в таблице
 //php artisan make:controller AuthorController -r
 //php artisan make:controller BookController -r
 

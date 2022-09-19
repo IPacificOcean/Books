@@ -4,8 +4,7 @@
 		<title>my view</title>
 	</head>
 	<body>
-    <form method='post' action="/api/user" >
-<!--       @csrf -->
+    <form method='post' action="{{ route('user.store') }}" >
       <label>Name User: 
         <input name="name">
       </label>

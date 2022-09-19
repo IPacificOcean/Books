@@ -15,7 +15,7 @@ use App\Http\Controllers;
 */
 
 Route::get('/', function () {
-    return view('router');
+    return view('test_laravel', ['users' => ['asd', 'dsa']]);
 });
 Route::get('/admin_part_books', function () {
     return view('admin_part_books');
@@ -34,6 +34,8 @@ Route::get('/public_part_authors', function () {
 Route::get('/admin_part_users', function () {
     return view('admin_part_users');
 });
+
+// Route::get('/user/{id}', [BookController::class, 'show']);
 
 // Route::get('uses', [AuthorController::class, 'store'])->name('uses');
 

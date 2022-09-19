@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\B
+use App\Models\Book;
+use App\Models\Author;
 
 class BookController extends Controller
 {
@@ -14,7 +15,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return Book::all();
+     
     }
 
     /**
@@ -35,7 +37,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Book::create($request->all());
       $created_book = Book::create($request->all());
       return response()->json(["Reply" => "Ok",]);
     }
@@ -46,9 +48,12 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        // return $book;
+      $books = Book::select('books.name', 'authors.name as author_name')->join('authors', 'books.author_id', '=', 'authors.id')->get();
+      $authors = Author::select('authors.name', 'authors.id')->get();
+      return view('test_laravel', ['books' => $books, 'authors' => $authors]);
     }
 
     /**
@@ -71,7 +76,11 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $book->fill($request->all());
+        $book->save();
+        return Book::all();
+      
     }
 
     /**

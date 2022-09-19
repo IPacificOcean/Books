@@ -5,7 +5,6 @@
 	</head>
 	<body>
     <form method='post' action="{{ route('author.store') }}" >
-      @csrf
       <label>Name Author: 
         <input name="name">
       </label>
