@@ -32,6 +32,7 @@ class AuthorController extends Controller
       $authors = DB::select('SELECT authors.id, authors.name, (SELECT Count(books.name) FROM books WHERE books.author_id=authors.id) AS count_books FROM authors');
       return view('admin_part_authors', ['authors' => $authors]);
     }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -52,9 +53,10 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $authors = DB::select('SELECT authors.id, authors.name, (SELECT Count(books.name) FROM books WHERE books.author_id=authors.id) AS count_books FROM authors');
+      return view('public_part_authors', ['authors' => $authors]);
     }
 
     /**
