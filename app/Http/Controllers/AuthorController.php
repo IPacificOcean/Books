@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
@@ -26,9 +27,10 @@ class AuthorController extends Controller
      */
     public function create()
     {
-      $books = Book::select('books.id', 'books.name', 'authors.name as author_name', 'authors.id as author_id')->join('authors', 'books.author_id', '=', 'authors.id')->get();
-      $authors = Author::select('authors.name', 'authors.id', 'count(authors) as bla')->get();
-      return view('admin_part_authors', ['books' => $books, 'authors' => $authors]);
+      // $books = DB::select('SELECT 
+      // authors.author, (SELECT Count(books.title) FROM books WHERE books.author_id=authors.id) FROM authors')->get();
+      $authors = DB::select('SELECT authors.id, authors.name, (SELECT Count(books.name) FROM books WHERE books.author_id=authors.id) AS count_books FROM authors');
+      return view('admin_part_authors', ['authors' => $authors]);
     }
 
     /**
