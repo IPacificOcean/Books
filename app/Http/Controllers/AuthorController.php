@@ -27,9 +27,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-      // $books = DB::select('SELECT 
-      // authors.author, (SELECT Count(books.title) FROM books WHERE books.author_id=authors.id) FROM authors')->get();
-      $authors = DB::select('SELECT authors.id, authors.name, (SELECT Count(books.name) FROM books WHERE books.author_id=authors.id) AS count_books FROM authors');
+     
+      $authors = DB::select('SELECT authors.id, authors.name, (SELECT Count(books.id) FROM books WHERE books.author_id=authors.id) AS count_books FROM authors');
       return view('admin_part_authors', ['authors' => $authors]);
     }
   
@@ -55,7 +54,7 @@ class AuthorController extends Controller
      */
     public function show()
     {
-        $authors = DB::select('SELECT authors.id, authors.name, (SELECT Count(books.name) FROM books WHERE books.author_id=authors.id) AS count_books FROM authors');
+        $authors = DB::select('SELECT authors.id, authors.name, (SELECT Count(books.id) FROM books WHERE books.author_id=authors.id) AS count_books FROM authors');
       return view('public_part_authors', ['authors' => $authors]);
     }
 
