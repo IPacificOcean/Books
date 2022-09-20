@@ -23,9 +23,6 @@ Route::get('/admin_part_books', [BookController::class, 'create']);
 
 Route::get('/admin_part_authors', [AuthorController::class, 'create']);
 
-// Route::get('/posts', function () {
-// 		return 'список постов';
-// 	});
 Route::get('/public_part_authors', function () {
     return view('public_part_authors');
 });
