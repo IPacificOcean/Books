@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use App\Models\Book;
 
 class AuthorController extends Controller
 {
@@ -25,7 +26,9 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+      $books = Book::select('books.id', 'books.name', 'authors.name as author_name', 'authors.id as author_id')->join('authors', 'books.author_id', '=', 'authors.id')->get();
+      $authors = Author::select('authors.name', 'authors.id')->get();
+      return view('admin_part_authors', ['books' => $books, 'authors' => $authors]);
     }
 
     /**
@@ -72,7 +75,10 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $author = Author::findOrFail($id);
+        $author->fill($request->all());
+        $author->save();
+        return Author::all();
     }
 
     /**
@@ -83,6 +89,6 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $author->delete();
     }
 }

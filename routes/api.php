@@ -21,10 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => 'v1'], function () {
 Route::apiResources([
     'author' => AuthorController::class,
     'book' => BookController::class,
     'user' => UserController::class
 ]);
+  });
 
 

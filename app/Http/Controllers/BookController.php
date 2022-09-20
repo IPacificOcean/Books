@@ -26,7 +26,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $books = Book::select('books.id', 'books.name', 'authors.name as author_name', 'authors.id as author_id')->join('authors', 'books.author_id', '=', 'authors.id')->get();
+      $authors = Author::select('authors.name', 'authors.id')->get();
+      return view('admin_part_books', ['books' => $books, 'authors' => $authors]);
     }
 
     /**
@@ -50,10 +52,6 @@ class BookController extends Controller
      */
     public function show()
     {
-        // return $book;
-      $books = Book::select('books.name', 'authors.name as author_name')->join('authors', 'books.author_id', '=', 'authors.id')->get();
-      $authors = Author::select('authors.name', 'authors.id')->get();
-      return view('test_laravel', ['books' => $books, 'authors' => $authors]);
     }
 
     /**
@@ -89,8 +87,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
         //
+      $book->delete();
     }
 }

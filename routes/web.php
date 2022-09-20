@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use \App\Http\Controllers\BookController;
+use \App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,11 @@ use App\Http\Controllers;
 */
 
 Route::get('/', function () {
-    return view('test_laravel', ['users' => ['asd', 'dsa']]);
+    return view('router');
 });
-Route::get('/admin_part_books', function () {
-    return view('admin_part_books');
-});
-Route::get('/admin_part_authors', function () {
-    return view('admin_part_authors');
-});
+Route::get('/admin_part_books', [BookController::class, 'create']);
+
+Route::get('/admin_part_authors', [AuthorController::class, 'create']);
 
 // Route::get('/posts', function () {
 // 		return 'список постов';
