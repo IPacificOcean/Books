@@ -52,6 +52,9 @@ class BookController extends Controller
      */
     public function show()
     {
+       $books = Book::select('books.id', 'books.name', 'authors.name as author_name', 'authors.id as author_id')->join('authors', 'books.author_id', '=', 'authors.id')->get();
+      $authors = Author::select('authors.name', 'authors.id')->get();
+      return view('public_part_authors', ['books' => $books, 'authors' => $authors]);
     }
 
     /**
