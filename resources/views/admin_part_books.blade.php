@@ -8,8 +8,12 @@
 @foreach ($books as $book)
     <form method='post' action='{{ route("book.update", $book->id)}}'>
       @method('PUT')
-      <input value='{{ $book->name }}' name='name' />
+      <label> Book:&nbsp
+      <input value='{{ $book->name }}' name='name' /> &nbsp
+      </label>
+      <label> Author:&nbsp 
       <select name='author_id'>
+      </label>
 @foreach ($authors as $author)
 @if ( $author->id == $book->author_id )
         <option value='{{ $author->id }}' selected>{{ $author->name }}</option>
